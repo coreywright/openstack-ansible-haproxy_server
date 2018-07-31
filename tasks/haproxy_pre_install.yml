@@ -15,8 +15,7 @@
 
 # NOTE(cloudnull):
 #  While the haproxy distro packages provide for an haproxy
-#  group this group is being created upfront to support
-#  log aggregation links as well as ensure common user
+#  group this group is being created upfront to ensure common user
 #  functionality across various distros that we support.
 - name: Create the haproxy system group
   group:
@@ -28,8 +27,7 @@
 
 # NOTE(cloudnull):
 #  While the haproxy distro packages provide for an haproxy
-#  user this user is being created upfront to support
-#  log aggregation links as well as ensure common user
+#  user this user is being created upfront to ensure common user
 #  functionality across various distros that we support.
 - name: Create the haproxy system user
   user:
@@ -47,7 +45,7 @@
   file:
     path: "{{ '/var/log/haproxy' | realpath }}"
     state: directory
-    owner: haproxy
+    owner: "{{ haproxy_log_directory_owner }}"
     group: adm
     mode: "0755"
   tags:
